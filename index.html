@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Inicio</title>
+</head>
+
+<body style="background-color: #ffffff;">
+  <!-- Aquí comienza la barra de navegación nun -->
+  <header>
+    <nav class="bg-red-900 border-gray-200">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">
+            <img src="img/Logosiman.png" class="h-12" alt="">
+          </span>
+        </a>
+
+        <button data-collapse-toggle="navbar-default" type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-300"
+          aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Abrir menú principal</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul class="flex items-center font-medium flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-red-900 md:flex-row md:space-x-8 md:mt-0 md:border-0">
+            <li>
+              <a href="index.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Inicio</a>
+            </li>
+
+            <!-- Dropdown Ropa con toggle -->
+            <li class="relative">
+              <button id="catalogoButton"
+                class="flex items-center justify-between w-full py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0 md:w-auto">
+                Catálogo
+                <svg class="w-2.5 h-2.5 ms-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <div id="catalogoMenu"
+                class="absolute left-0 z-999 hidden bg-white rounded shadow-md mt-2 min-w-[150px]">
+                <a href="hombres.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white">Hombres</a>
+                <a href="mujeres.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white">Mujeres</a>
+                <a href="niños.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white" >Niños</a>
+                <a href="Zapatos.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white">Zapatos</a>
+                <div class="border-t border-white my-2"></div>
+                <a href="carrito.html" class="block px-4 py-2 bg-red-900 text-white rounded-b hover:bg-red-800 hover:text-black">Carrito</a>
+              </div>
+            </li>
+
+            <script>
+              const catalogoButton = document.getElementById('catalogoButton');
+              const catalogoMenu = document.getElementById('catalogoMenu');
+
+              catalogoButton.addEventListener('click', function () {
+                catalogoMenu.classList.toggle('hidden');
+              });
+
+              document.addEventListener('click', function (e) {
+                if (!catalogoButton.contains(e.target) && !catalogoMenu.contains(e.target)) {
+                  catalogoMenu.classList.add('hidden');
+                }
+              });
+            </script>
+
+            <li>
+              <a href="Joyas.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Joyas</a>
+            </li>
+            <li>
+              <a href="destacados.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Destacados</a>
+            </li>
+            <li>
+              <a href="equipo.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Sobre Nosotros</a>
+            </li>
+            <li class="ml-4 flex items-center">
+              <a href="Perfil.html" class="text-white hover:text-black">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M15 11a3 3 0 10-6 0 3 3 0 006 0z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<!-- Aquí comienza al carrusel -->
+
+            <div id="indicators-carousel" class="relative w-full" data-carousel="static">
+                <!-- Carousel wrapper -->
+                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                     <!-- Item 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                        <img src="img/1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="img/2.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="img/3.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="img/4.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="img/5.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                </div>
+                <!-- Slider indicators -->
+                <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+                </div>
+                <!-- Slider controls -->
+                <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
+            </div>
+
+<!-- Aquí comienza el banner de promo -->
+
+            <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-red-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+                <div class="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+                  <div class="aspect-577/310 w-[36.0625rem] bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+                </div>
+                <div class="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+                  <div class="aspect-577/310 w-[36.0625rem] bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+                </div>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <p class="text-sm/6 text-orange-50">
+                    <strong class="font-semibold">¡Descubre las últimas tendencias!</strong><svg viewBox="0 0 2 2" class="mx-2 inline size-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Compra ropa de calidad directamente desde nuestra tienda en línea. ¡Ofertas especiales solo por tiempo limitado!
+                  </p>
+                  <a href="#" class="flex-none rounded-full bg-white px-3.5 py-1 text-sm font-semibold text-black shadow-xs hover:bg-gray-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-800">Explora ahora <span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="flex flex-1 justify-end">
+                  <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="size-5 text-orange-50" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                      <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+<!-- Aquí comienza destacados -->
+<div class="bg-orange-50 py-8 sm:py-6">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-center text-base/7 font-semibold text-black">Elegancia en Cada Detalle</h2>
+    <p class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-red-900 sm:text-5xl">Descubre Nuestra Exclusiva Colección de Ropa, Zapatos y Joyas</p>
+    <div class="mt-6 grid gap-4 sm:mt-12 lg:grid-cols-3 lg:grid-rows-2">
+      <div class="relative lg:row-span-2">
+        <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+          <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+            <p class="mt-2 text-lg font-medium tracking-tight text-red-800 max-lg:text-center">Experiencia Móvil</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-sky-950 max-lg:text-center">Disfruta de la compra desde la comodidad de tu hogar con nuestra tienda móvil. Navega por una interfaz elegante y sin interrupciones desde cualquier dispositivo.</p>
+          </div>
+          <div >
+            <div>
+              <img class="size-full object-cover object-top" src="img/ej1.png">
+            </div>
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
+      </div>
+      <div class="relative max-lg:row-start-1">
+        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+          <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+            <p class="mt-2 text-lg font-medium tracking-tight text-red-800 max-lg:text-center">Rendimiento de Lujo</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-sky-950 max-lg:text-center">Experimenta las mejores telas, zapatos y joyas que definen sofisticación y alto rendimiento. Nuestros productos están elaborados a la perfección.</p>
+          </div>
+          <div class="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
+            <img class="w-full max-lg:max-w-xs" src="img/ej2.png">
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 max-lg:rounded-t-[2rem]"></div>
+      </div>
+      <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+        <div class="absolute inset-px rounded-lg bg-white"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
+          <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+            <p class="mt-2 text-lg font-medium tracking-tight text-red-800 max-lg:text-center">Joyas Exclusivas</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-sky-950 max-lg:text-center">Disfruta del lujo de las joyas finas que añaden brillo y elegancia a cualquier ocasión. Nuestras colecciones exclusivas están diseñadas para hacerte brillar.</p>
+          </div>
+          <div class="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
+            <img class="flex display-center [min(152px,40cqw)] object-cover" src="img/ej3.png">
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5"></div>
+      </div>
+      <div class="relative lg:row-span-2">
+        <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+          <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+            <p class="mt-2 text-lg font-medium tracking-tight text-red-800 max-lg:text-center">Moda Adelantada</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-sky-950 max-lg:text-center">Mantente a la vanguardia con nuestras colecciones de moda moderna, calzado y accesorios. Eleva tu vestuario con piezas atemporales y de calidad.</p>
+          </div>
+          <div class="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
+            <img class="flex display-center [min(152px,40cqw)] object-cover" src="img/ej4.png">
+          </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-orange-50 py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <h2 class="text-center text-lg font-semibold text-red-900">Confiado por los equipos más innovadores del mundo</h2>
+      <div class="mx-auto mt-6 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindcss.com/plus-assets/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
+        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
+        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
+        <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindcss.com/plus-assets/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
+        <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindcss.com/plus-assets/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48">
+      </div>
+    </div>
+  </div>
+</div>
+              
+<!-- Aquí comienza el pie de página -->
+            <footer class="bg-red-900 text-orange-50"> 
+                <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                  <div class="md:flex md:justify-between">
+                    <div class="mb-6 md:mb-0">
+                      <a href="#" class="flex items-center">
+                        <img src="img/logosimancom.png" class="h-32" alt="Logo" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap"></span>
+                      </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                      <div>
+                        <h2 class="mb-6 text-sm font-semibold uppercase">Diseño de Páginas <br> Web</h2>
+                        <ul class="font-medium">
+                          <li class="mb-4">
+                            <a href="#" class="hover:text-black">Ing. Juan Pablo Baires</a>
+                          </li>
+                          <li>
+                            <a href="#" class="hover:text-black">Siman</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h2 class="mb-6 text-sm font-semibold uppercase">Integrantes</h2>
+                        <ul class="font-medium">
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Frederick Garcia</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Lucia Arguera</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Sara Meléndez</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Dayana Magaña</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Reina Barrera</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h2 class="mb-6 text-sm font-semibold uppercase">Carnet</h2>
+                        <ul class="font-medium">
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1298-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1400-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1675-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1556-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-0531-2022</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-6 border-black sm:mx-auto lg:my-8" />
+                  <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm">© Ciclo 01-2025 <a href="#" class="hover:text-yellow-600">Equipo Dinamita™</a>. Todos los derechos reservados.</span>
+                    <div class="flex mt-4 sm:justify-center sm:mt-0">
+                      <a href="#" class="hover:text-yellow-600">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 8 19">
+                          <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="sr-only">Facebook page</span>
+                      </a>
+                      <a href="#" class="hover:text-yellow-600 ms-5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 21 16">
+                          <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59Z"/>
+                        </svg>
+                        <span class="sr-only">Discord community</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+              
+</body>
+<script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+</html>

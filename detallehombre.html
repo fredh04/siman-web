@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chaqueta jeans claro con remaches</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --rojo-oscuro: #7b1d1d;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+ <header>
+    <nav class="bg-red-900 border-gray-200">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">
+            <img src="img/Logosiman.png" class="h-12" alt="">
+          </span>
+        </a>
+
+        <button data-collapse-toggle="navbar-default" type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-300"
+          aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Abrir menú principal</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul class="flex items-center font-medium flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-red-900 md:flex-row md:space-x-8 md:mt-0 md:border-0">
+            <li>
+              <a href="index.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Inicio</a>
+            </li>
+
+            <!-- Dropdown Ropa con toggle -->
+            <li class="relative">
+              <button id="catalogoButton"
+                class="flex items-center justify-between w-full py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0 md:w-auto">
+                Catálogo
+                <svg class="w-2.5 h-2.5 ms-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <div id="catalogoMenu"
+                class="absolute left-0 z-999 hidden bg-white rounded shadow-md mt-2 min-w-[150px]">
+                <a href="hombres.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white">Hombres</a>
+                <a href="mujeres.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white">Mujeres</a>
+                <a href="niños.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white" >Niños</a>
+                <a href="Zapatos.html" class="block px-4 py-2 text-red-900 rounded-b hover:bg-red-800 hover:text-white">Zapatos</a>
+                <div class="border-t border-white my-2"></div>
+                <a href="carrito.html" class="block px-4 py-2 bg-red-900 text-white rounded-b hover:bg-red-800 hover:text-black">Carrito</a>
+              </div>
+            </li>
+
+            <script>
+              const catalogoButton = document.getElementById('catalogoButton');
+              const catalogoMenu = document.getElementById('catalogoMenu');
+
+              catalogoButton.addEventListener('click', function () {
+                catalogoMenu.classList.toggle('hidden');
+              });
+
+              document.addEventListener('click', function (e) {
+                if (!catalogoButton.contains(e.target) && !catalogoMenu.contains(e.target)) {
+                  catalogoMenu.classList.add('hidden');
+                }
+              });
+            </script>
+
+            <li>
+              <a href="Joyas.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Joyas</a>
+            </li>
+            <li>
+              <a href="destacados.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Destacados</a>
+            </li>
+            <li>
+              <a href="equipo.html" class="block py-2 px-3 text-white hover:text-black rounded md:hover:bg-transparent md:border-0 md:p-0">Sobre Nosotros</a>
+            </li>
+            <li class="ml-4 flex items-center">
+              <a href="Perfil.html" class="text-white hover:text-black">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M15 11a3 3 0 10-6 0 3 3 0 006 0z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-10 bg-white mt-10 shadow-lg rounded-2xl border border-gray-200">
+
+    <!-- Imagen del producto -->
+    <div class="flex justify-center items-center">
+      <img src="img/ho17.jpg" alt="Chaqueta jeans claro con remaches" class="w-full max-w-md rounded-xl border border-gray-300 shadow-sm">
+    </div>
+
+    <!-- Detalles del producto -->
+    <div class="space-y-5">
+      <h2 class="text-2xl font-bold text-[var(--rojo-oscuro)]">Clásicos Atemporales</h2>
+      <p class="text-gray-700 text-sm">
+        Un abrigo camel y un vestido negro corto: el dúo perfecto para un look elegante y atemporal.. </p>
+
+      <div class="text-xl font-semibold text-[var(--rojo-oscuro)]">$65.00</div>
+
+      <div>
+        <label for="size" class="block text-sm font-medium text-gray-700 mb-1">Talla</label>
+        <select id="size" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--rojo-oscuro)]">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="color" class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+        <select id="color" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--rojo-oscuro)]">
+          <option>Azul</option>
+          <option>Negro</option>
+        </select>
+      </div><br>
+
+      <a href="carrito.html"><button class="w-full bg-[var(--rojo-oscuro)] text-white text-sm font-medium py-2 rounded-lg hover:bg-red-900 transition">
+        Agregar al carrito
+      </button></a>
+      <br><br><br><br><br><br><br><br><br><br><br>
+      
+      <div class="flex justify-center"> <a href="hombres.html"><button class="max-w-6xl bg-[var(--blanco)] text-red-800 text-sm font-medium py-2 px-4 rounded-lg hover">
+        ← volver
+      </button></a> </div><br>
+    </div><br>
+    </div>
+  </main>
+
+    <!-- Descripción adicional -->
+  <section class="max-w-6xl mx-auto p-6 mt-8 bg-white shadow rounded-2xl border border-gray-200">
+    <h3 class="text-lg font-semibold text-[var(--rojo-oscuro)] mb-3">Descripción detallada</h3>
+    <p class="text-gray-700 leading-relaxed text-sm">
+      Esta chaqueta combina estilo y funcionalidad. Fabricada con denim de alta calidad, es ideal para cualquier temporada. 
+      Los detalles metálicos ofrecen un contraste moderno, mientras que su corte entallado favorece una silueta elegante. 
+      Perfecta para acompañarte en un look urbano, nocturno o informal.
+    </p>
+  </section><br>
+
+  <footer class="bg-red-900 text-orange-50"> 
+                <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                  <div class="md:flex md:justify-between">
+                    <div class="mb-6 md:mb-0">
+                      <a href="#" class="flex items-center">
+                        <img src="img/logosimancom.png" class="h-32" alt="Logo" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap"></span>
+                      </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                      <div>
+                        <h2 class="mb-6 text-sm font-semibold uppercase">Diseño de Páginas <br> Web</h2>
+                        <ul class="font-medium">
+                          <li class="mb-4">
+                            <a href="#" class="hover:text-black">Ing. Juan Pablo Baires</a>
+                          </li>
+                          <li>
+                            <a href="#" class="hover:text-black">Siman</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h2 class="mb-6 text-sm font-semibold uppercase">Integrantes</h2>
+                        <ul class="font-medium">
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Frederick Garcia</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Lucia Arguera</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Sara Meléndez</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Dayana Magaña</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">Reina Barrera</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h2 class="mb-6 text-sm font-semibold uppercase">Carnet</h2>
+                        <ul class="font-medium">
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1298-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1400-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1675-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-1556-2022</a>
+                          </li>
+                          <li class="mb-2">
+                            <a href="#" class="hover:text-black">61-0531-2022</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-6 border-black sm:mx-auto lg:my-8" />
+                  <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm">© Ciclo 01-2025 <a href="#" class="hover:text-yellow-600">Equipo Dinamita™</a>. Todos los derechos reservados.</span>
+                    <div class="flex mt-4 sm:justify-center sm:mt-0">
+                      <a href="#" class="hover:text-yellow-600">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 8 19">
+                          <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="sr-only">Facebook page</span>
+                      </a>
+                      <a href="#" class="hover:text-yellow-600 ms-5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 21 16">
+                          <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59Z"/>
+                        </svg>
+                        <span class="sr-only">Discord community</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+              
+</body>
+</html>

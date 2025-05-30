@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+    <title>Panel Administrativo de Eventos</title>
+    
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    :root {
+        --red-900: #7f1d1d;
+        --white: #ffffff;
+        --black: #000000;
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0; padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    body {
+        margin: 0;
+        background-color: #fff;
+        color: var(--black);
+        display: flex;
+        min-height: 100vh;
+        flex-direction: row-reverse;
+    }
+    .section-title {
+            color: var(--red-900);
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--red-800);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+    table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead {
+            background-color: var(--red-900);
+            color: var(--white);
+        }
+        thead th {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-weight: 700;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody td {
+            padding: 0.7rem 1rem;
+            color: var(--red-800);
+            font-weight: 600;
+        }
+        tbody td.price {
+            font-weight: 700;
+            color: var(--red-900);
+        }
+        footer {
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    aside.sidebar-right {
+        background-color: var(--red-900);
+        color: var(--white);
+        width: 220px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        box-shadow: -2px 0 8px rgba(127, 29, 29, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        user-select: none;
+    }
+    .back-button {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--white);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: color 0.3s, background-color 0.3s;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .back-button:hover,
+    .back-button:focus {
+        color: var(--black);
+        background-color: var(--white);
+        outline: none;
+    }
+    aside.sidebar-right h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        width: 100%;
+        color: var(--white);
+    }
+    aside.sidebar-right nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    aside.sidebar-right nav a {
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 4px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    aside.sidebar-right nav a:hover,
+    aside.sidebar-right nav a:focus {
+        color: var(--black);
+        background-color: var(--white);
+        outline: none;
+        cursor: pointer;
+    }
+    main.content {
+        flex-grow: 1;
+        padding: 2rem;
+        margin-right: 220px; /* To avoid content underneath sidebar */
+    }
+    footer {
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 2rem 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+</style>
+</head>
+<body>
+<aside class="sidebar-right" role="complementary" aria-label="Panel Administrativo">
+    <a href="index.html" class="back-button" aria-label="Regresar">
+        &#8592; Regresar
+    </a>
+    <h1>Panel Administrativo de clientes</h1>
+    <nav>
+        <a href="admin.html" tabindex="0">Ventas</a>
+        <a href="eventos.html" tabindex="0">Eventos</a>
+        <a href="clientes.html" tabindex="0">Clientes</a>
+    </nav>
+</aside>
+<main class="content"> 
+    <section class="data-table-section">
+        <h2 class="section-title">Clientes frecuentes del mes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Categoría</th>
+                    <th>Unidades Vendidas</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Carlos Hernandez</td><td>Ropa</td><td>5</td><td class="price">$65</td></tr>
+                <tr><td>Alison Guevarra</td><td>Calzado</td><td>2</td><td class="price">$35</td></tr>
+                <tr><td>Mauricio Peña</td><td>Joyería</td><td>5</td><td class="price">$600</td></tr>
+                <tr><td>Javier Carranza</td><td>Joyería</td><td>2</td><td class="price">$60</td></tr>
+                <tr><td>Alejandra Maldonado</td><td>Calzado</td><td>4</td><td class="price">$95</td></tr>
+                <tr><td>Armando Mesas</td><td>Joyeria</td><td>1</td><td class="price">$30</td></tr>
+                <tr><td>Ilas Tortillas</td><td>Ropa</td><td>8</td><td class="price">$70</td></tr>
+                <tr><td>Elizabeth Fuentes</td><td>Joyeria</td><td>2</td><td class="price">$45</td></tr>
+                <tr><td>Guillermo Cotto</td><td>Calzado</td><td>1</td><td class="price">$25</td></tr>
+                <tr><td>Natalie Iraheta</td><td>Ropa</td><td>9</td><td class="price">$155</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        &copy; 2025 Ventas Siman. Todos los derechos reservados.
+    </footer>
+</body>
+</html>
+

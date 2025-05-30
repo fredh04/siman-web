@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Panel Administrativo de Eventos</title>
+    
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    :root {
+        --red-900: #7f1d1d;
+        --white: #ffffff;
+        --black: #000000;
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0; padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    body {
+        margin: 0;
+        background-color: #fff;
+        color: var(--black);
+        display: flex;
+        min-height: 100vh;
+        flex-direction: row-reverse;
+    }
+    .cards {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1 1 220px;
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(127, 29, 29, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        footer {
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 2rem 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Small inline SVG graphs in cards */
+        .card svg {
+            width: 60px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+    aside.sidebar-right {
+        background-color: var(--red-900);
+        color: var(--white);
+        width: 220px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        box-shadow: -2px 0 8px rgba(127, 29, 29, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        user-select: none;
+    }
+    .back-button {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--white);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: color 0.3s, background-color 0.3s;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .back-button:hover,
+    .back-button:focus {
+        color: var(--black);
+        background-color: var(--white);
+        outline: none;
+    }
+    aside.sidebar-right h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        width: 100%;
+        color: var(--white);
+    }
+    aside.sidebar-right nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    aside.sidebar-right nav a {
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 4px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    aside.sidebar-right nav a:hover,
+    aside.sidebar-right nav a:focus {
+        color: var(--black);
+        background-color: var(--white);
+        outline: none;
+        cursor: pointer;
+    }
+    main.content {
+        flex-grow: 1;
+        padding: 2rem;
+        margin-right: 220px; /* To avoid content underneath sidebar */
+    }
+</style>
+</head>
+<body>
+<aside class="sidebar-right" role="complementary" aria-label="Panel Administrativo">
+    <a href="index.html" class="back-button" aria-label="Regresar">
+        &#8592; Regresar
+    </a>
+    <h1>Panel Administrativo</h1>
+    <nav>
+        <a href="admin.html" tabindex="0">Ventas</a>
+        <a href="eventos.html" tabindex="0">Eventos</a>
+        <a href="clientes.html" tabindex="0">Clientes</a>
+    </nav>
+</aside>
+
+<main class="content"> 
+    <main>
+        <h2 class="tevent font-bold text-gray-900 mb-8">Eventos programados</h2><br>
+        <section class="event">
+            <div class="calendar">
+                <div class="calendar-header">
+                  <button onclick="changeMonth(-1)">◀ Anterior</button>
+                  <div class="month-year" id="month-year"></div>
+                  <button onclick="changeMonth(1)">Siguiente ▶</button>
+                </div>
+                <div class="days">
+                  <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div>
+                  <div>Jue</div><div>Vie</div><div>Sáb</div>
+                </div>
+                <div class="dates" id="calendar-dates"></div>
+              </div>
+            
+              <script>
+                const monthYear = document.getElementById('month-year');
+                const dates = document.getElementById('calendar-dates');
+            
+                const monthNames = [
+                  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                ];
+            
+                let currentDate = new Date();
+            
+                function renderCalendar() {
+                  const year = currentDate.getFullYear();
+                  const month = currentDate.getMonth();
+            
+                  monthYear.textContent = `${monthNames[month]} ${year}`;
+            
+                  const firstDay = new Date(year, month, 1).getDay();
+                  const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+                  dates.innerHTML = "";
+            
+                  for (let i = 0; i < firstDay; i++) {
+                    dates.innerHTML += `<div></div>`;
+                  }
+            
+                  const today = new Date();
+                  const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
+            
+                  for (let day = 1; day <= daysInMonth; day++) {
+                    const isToday = isCurrentMonth && day === today.getDate();
+                    dates.innerHTML += `<div class="${isToday ? 'today' : ''}">${day}</div>`;
+                  }
+                }
+            
+                function changeMonth(offset) {
+                  currentDate.setMonth(currentDate.getMonth() + offset);
+                  renderCalendar();
+                }
+            
+                renderCalendar();
+              </script>
+              
+              <div class="cards">
+                <div class="card">
+                    <h2>Eventos anteriores</h2>
+                    <div class="value">
+                        Vacaciones semana santa 13 al 20 de abril
+                        <!--
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico de barras Ventas Totales" role="img" >
+                            <rect x="2" y="15" width="6" height="13" fill="rgba(255 255 255 / 0.8)"/>
+                            <rect x="12" y="7" width="6" height="21" fill="#fff"/>
+                            <rect x="22" y="10" width="6" height="18" fill="rgba(255 255 255 / 0.9)"/>
+                            <rect x="32" y="3" width="6" height="25" fill="#fff"/>
+                            <rect x="42" y="18" width="6" height="10" fill="rgba(255 255 255 / 0.7)"/>
+                            <rect x="52" y="12" width="6" height="16" fill="rgba(255 255 255 / 0.85)"/>
+                        </svg>-->
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Evento del mes</h2>
+                    <div class="value">
+                        Dia de las madres <br> 
+                        10 de mayo
+                        <!--
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico de línea Pedidos" role="img" >
+                            <polyline points="2,20 10,12 18,15 26,10 34,14 42,8 50,9 58,5" fill="none" stroke="#fff" stroke-width="2" />
+                            <circle cx="10" cy="12" r="2" fill="#fff"/>
+                            <circle cx="26" cy="10" r="2" fill="#fff"/>
+                            <circle cx="42" cy="8" r="2" fill="#fff"/>
+                            <circle cx="58" cy="5" r="2" fill="#fff"/>
+                        </svg>-->
+                    </div>
+                </div>
+            </div>
+            <div class="cards2">
+                <div class="card">
+                    <h2>Proximo evento</h2>
+                    <div class="value">
+                        Dia del padre
+                        <br> 17 de junio
+                        <!--
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico circular Clientes Nuevos" role="img" >
+                            <circle cx="15" cy="15" r="10" fill="rgba(255 255 255 / 0.6)"/>
+                            <path d="M15 15 L25 15 A10 10 0 1 1 7.3 6.7 Z" fill="#fff"/>
+                        </svg>-->
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Eventos del año</h2>
+                    <div class="value">
+                        Total de eventos en el año
+                        <br>32
+                        <!--
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico circular Clientes Nuevos" role="img" >
+                            <circle cx="15" cy="15" r="10" fill="rgba(255 255 255 / 0.6)"/>
+                            <path d="M15 15 L25 15 A10 10 0 1 1 7.3 6.7 Z" fill="#fff"/>
+                        </svg>-->
+                    </div>
+                </div>
+            </div>
+           
+
+        </section>
+        <br>
+        
+
+    </main>
+    <footer>
+        &copy; 2025 Ventas Siman. Todos los derechos reservados.
+    </footer>
+</body>
+</html>
+
+    

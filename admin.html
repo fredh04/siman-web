@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+    <title>Panel Administrativo de Ventas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        :root {
+            --red-900: #7f1d1d;
+            --red-800: #991b1b;
+            --black: #000000;
+            --white: #ffffff;
+        }
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 8px rgba(127, 29, 29, 0.3);
+            position: relative;
+        }
+        header h1 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0;
+            flex: 1;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+        nav a:hover {
+            color: var(--red-800);
+        }
+        .back-button {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            flex: 0 0 auto;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .back-button:hover {
+            color: var(--red-800);
+        }
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .cards {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1 1 220px;
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(127, 29, 29, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        /* Small inline SVG graphs in cards */
+        .card svg {
+            width: 60px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+        .section-title {
+            color: var(--red-900);
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--red-800);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+        .charts {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .chart-container {
+            background-color: #f9f9f9;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 450px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 280px !important;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead {
+            background-color: var(--red-900);
+            color: var(--white);
+        }
+        thead th {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-weight: 700;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody td {
+            padding: 0.7rem 1rem;
+            color: var(--red-800);
+            font-weight: 600;
+        }
+        tbody td.price {
+            font-weight: 700;
+            color: var(--red-900);
+        }
+        footer {
+            background-color: var(--red-900);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+    </style>
+    
+<title>Panel Administrativo - Sidebar Derecho</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    :root {
+        --red-900: #7f1d1d;
+        --white: #ffffff;
+        --black: #000000;
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0; padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    body {
+        margin: 0;
+        background-color: #fff;
+        color: var(--black);
+        display: flex;
+        min-height: 100vh;
+        flex-direction: row-reverse;
+    }
+    aside.sidebar-right {
+        background-color: var(--red-900);
+        color: var(--white);
+        width: 220px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 1rem 1.5rem 2rem 1.5rem;
+        box-shadow: -2px 0 8px rgba(127, 29, 29, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        user-select: none;
+    }
+    .back-button {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--white);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: color 0.3s, background-color 0.3s;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .back-button:hover,
+    .back-button:focus {
+        color: var(--black);
+        background-color: var(--white);
+        outline: none;
+    }
+    aside.sidebar-right h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        width: 100%;
+        color: var(--white);
+    }
+    aside.sidebar-right nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    aside.sidebar-right nav a {
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 4px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    aside.sidebar-right nav a:hover,
+    aside.sidebar-right nav a:focus {
+        color: var(--black);
+        background-color: var(--white);
+        outline: none;
+        cursor: pointer;
+    }
+    main.content {
+        flex-grow: 1;
+        padding: 2rem;
+        margin-right: 220px; /* To avoid content underneath sidebar */
+    }
+</style>
+</head>
+<body>
+<aside class="sidebar-right" role="complementary" aria-label="Panel Administrativo">
+    <a href="index.html" class="back-button" aria-label="Regresar">
+        &#8592; Regresar
+    </a>
+    <h1>Panel Administrativo</h1>
+    <nav>
+        <a href="admin.html" tabindex="0">Ventas</a>
+        <a href="eventos.html" tabindex="0">Eventos</a>
+        <a href="clientes.html" tabindex="0">Clientes</a>
+    </nav>
+</aside>
+<main class="content">    
+    <main>
+        <section class="summary">
+            <h2 class="section-title">Resumen de Ventas</h2>
+            <div class="cards">
+                <div class="card">
+                    <h2>Ventas Totales</h2>
+                    <div class="value">
+                        $ 125,430
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico de barras Ventas Totales" role="img" >
+                            <rect x="2" y="15" width="6" height="13" fill="rgba(255 255 255 / 0.8)"/>
+                            <rect x="12" y="7" width="6" height="21" fill="#fff"/>
+                            <rect x="22" y="10" width="6" height="18" fill="rgba(255 255 255 / 0.9)"/>
+                            <rect x="32" y="3" width="6" height="25" fill="#fff"/>
+                            <rect x="42" y="18" width="6" height="10" fill="rgba(255 255 255 / 0.7)"/>
+                            <rect x="52" y="12" width="6" height="16" fill="rgba(255 255 255 / 0.85)"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Pedidos</h2>
+                    <div class="value">
+                        1,240
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico de línea Pedidos" role="img" >
+                            <polyline points="2,20 10,12 18,15 26,10 34,14 42,8 50,9 58,5" fill="none" stroke="#fff" stroke-width="2" />
+                            <circle cx="10" cy="12" r="2" fill="#fff"/>
+                            <circle cx="26" cy="10" r="2" fill="#fff"/>
+                            <circle cx="42" cy="8" r="2" fill="#fff"/>
+                            <circle cx="58" cy="5" r="2" fill="#fff"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Clientes Nuevos</h2>
+                    <div class="value">
+                        85
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico circular Clientes Nuevos" role="img" >
+                            <circle cx="15" cy="15" r="10" fill="rgba(255 255 255 / 0.6)"/>
+                            <path d="M15 15 L25 15 A10 10 0 1 1 7.3 6.7 Z" fill="#fff"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Productos en Stock</h2>
+                    <div class="value">
+                        540
+                        <svg viewBox="0 0 60 30" aria-label="Mini gráfico de barras Productos en Stock" role="img" >
+                            <rect x="2" y="5" width="8" height="20" fill="#fff" />
+                            <rect x="14" y="10" width="8" height="15" fill="rgba(255 255 255 / 0.8)" />
+                            <rect x="26" y="15" width="8" height="10" fill="rgba(255 255 255 / 0.6)" />
+                            <rect x="38" y="7" width="8" height="18" fill="rgba(255 255 255 / 0.9)" />
+                            <rect x="50" y="12" width="8" height="13" fill="rgba(255 255 255 / 0.7)" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="charts-section">
+            <h2 class="section-title">Gráficos de Ventas</h2>
+            <div class="charts">
+                <div class="chart-container">
+                    <canvas id="salesByMonth"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="salesByCategory"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-table-section">
+            <h2 class="section-title">Ventas por Producto</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Unidades Vendidas</th>
+                        <th>Ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Camisa Hombre</td><td>Ropa</td><td>325</td><td class="price">$9,750</td></tr>
+                    <tr><td>Zapatos Mujer</td><td>Calzado</td><td>210</td><td class="price">$14,700</td></tr>
+                    <tr><td>Anillos Juveniles</td><td>Joyería</td><td>180</td><td class="price">$6,300</td></tr>
+                    <tr><td>Set de Pulseras Love</td><td>Joyería</td><td>90</td><td class="price">$13,500</td></tr>
+                    <tr><td>Jeans Clásicos</td><td>Ropa</td><td>275</td><td class="price">$13,750</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Ventas Siman. Todos los derechos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Datos ejemplo para chart Ventas por mes
+        const salesByMonthConfig = {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+                datasets: [{
+                    label: 'Ventas',
+                    data: [12000, 15000, 13000, 18000, 17000, 22000, 24000],
+                    borderColor: 'rgba(127, 29, 29, 0.8)',
+                    backgroundColor: 'rgba(127, 29, 29, 0.3)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'var(--red-900)',
+                    borderWidth: 3,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: '#7f1d1d', font: {weight:'700',size:14} } },
+                    title: {
+                        display: true,
+                        text: 'Ventas Mensuales',
+                        color: '#7f1d1d',
+                        font: {size: 18, weight:'700'}
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {color: '#991b1b', font: {weight:'600'}},
+                        grid: {color: '#f0dede'}
+                    },
+                    x: {
+                        ticks: {color: '#991b1b', font: {weight:'600'}},
+                        grid: {color: '#f0dede'}
+                    }
+                }
+            }
+        };
+
+        // Datos ejemplo para chart Ventas por categoría con 3 apartados: Ropa, Calzado, Joyería
+        const salesByCategoryConfig = {
+            type: 'doughnut',
+            data: {
+                labels: ['Ropa', 'Calzado', 'Joyería'],
+                datasets: [{
+                    label: 'Ventas',
+                    data: [75000, 20000, 25000],
+                    backgroundColor: [
+                        'rgba(127, 29, 29, 0.8)',
+                        'rgba(153, 27, 27, 0.7)',
+                        'rgba(191, 39, 39, 0.7)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0.8)',
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { color: '#7f1d1d', font: {weight:'700',size:14} }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Ventas por Categoría',
+                        color: '#7f1d1d',
+                        font: {size: 18, weight:'700'}
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const ctx1 = document.getElementById('salesByMonth').getContext('2d');
+            new Chart(ctx1, salesByMonthConfig);
+            const ctx2 = document.getElementById('salesByCategory').getContext('2d');
+            new Chart(ctx2, salesByCategoryConfig);
+        });
+    </script>
+</body>
+</html>
+
